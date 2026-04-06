@@ -1,0 +1,192 @@
+{
+  "hospitalName": "경희리온한의원",
+  "brandColor": "#43ad39",
+  "slogan": "당신의 건강을 Re:ON",
+  
+  "header": {
+    "logo": "/images/logo-green.png",
+    "navMenu": [
+      {"label": "브랜드 스토리", "path": "/about"},
+      {"label": "진료 안내", "path": "/services"},
+      {"label": "경희리온 처방", "path": "/pharmacy"},
+      {"label": "이용 안내", "path": "/guide"}
+    ],
+    "bookingUrl": "https://naver.me/Gmb5YhR5"
+  },
+
+  "hero": {
+    "mainTitle": "당신의 건강을 Re:ON",
+    "subTitle": "정확한 진단으로 꼭 필요한 치료만, 아프지 않게 도와드립니다.",
+    "bgImage": "/images/lobby-view.jpg",
+    "cta": [
+      { "label": "네이버 예약", "url": "https://naver.me/Gmb5YhR5" },
+      { "label": "카톡 상담", "url": "http://pf.kakao.com/_mjYKn/chat" }
+    ]
+  },
+
+  "mainFocus": {
+    "title": "경희리온이 약속하는 두 가지 원칙",
+    "features": [
+      {
+        "id": "painless",
+        "title": "아프지 않은 치료",
+        "subtitle": "치료의 두려움을 편안함으로",
+        "description": "침 치료의 자극을 최소화하여 한의원이 처음인 분이나 어린아이들도 부담 없이 내원하실 수 있습니다. 통증을 참는 치료가 아닌, 몸이 이완되는 편안한 치료를 지향합니다.",
+        "image": "/images/acupuncture.jpg"
+      },
+      {
+        "id": "ultrasound",
+        "title": "정밀한 초음파 진단",
+        "subtitle": "눈으로 확인하는 정확한 진료",
+        "description": "원장이 실시간 초음파로 병변을 확인합니다. 과잉 진료 없이, 꼭 필요한 부위에만 정밀하게 치료합니다.",
+        "image": "/images/ultrasound-device.jpg"
+      }
+    ]
+  },
+
+  "about": {
+    "philosophy": {
+      "title": "치료에 대한 두려움이 없는, 편안한 일상의 쉼터",
+      "description": "병원은 차가운 치료의 공간이 아니라, 지친 몸과 마음이 쉬어가는 편안한 곳이어야 합니다. 누구나 언제든 쉽게 찾아와 정성 어린 진료를 받을 수 있는 이웃 같은 한의원을 지향합니다."
+    },
+    "doctor": {
+      "name": "송기문 대표원장",
+      "image": "/images/doctor-profile.jpg",
+      "specialty": "",
+      "education": "경희대학교 한의과대학 졸업",
+      "experience": [
+        "대한 스포츠한의학회 팀닥터 과정 수료",
+        "한방비만치료 전문가과정 수료"
+      ],
+      "memberships": ["대한한의사협회", "한방비만학회", "대한스포츠한의학회", "대한한방부인과학회"]
+    }
+  },
+
+  "services": [
+    {
+      "id": "spine",
+      "title": "목/허리 통증 클리닉",
+      "keywords": ["디스크", "거북목", "만성 통증"],
+      "description": "통증의 근본 원인을 파악하여 개개인의 체형과 습관에 맞춘 맞춤형 치료를 제공합니다.",
+      "image": "/images/spine-pain-clinic.png",
+      "points": ["정확한 원인 진단", "맞춤형 침/약침 치료", "추나요법을 통한 구조적 교정", "재발 방지와 생활 습관 안내"]
+    },
+    {
+      "id": "joint",
+      "title": "어깨 관절 클리닉",
+      "keywords": ["오십견", "회전근개", "관절염"],
+      "description": "초음파 진단으로 상태를 실시간 확인하고, 연어약침과 추나로 빠른 회복을 돕습니다.",
+      "image": "/images/shoulder-joint-clinic.png",
+      "points": ["정확한 원인 진단", "PDRN 성분 연어약침으로 재생 촉진 치료", "추나요법을 통한 구조적 교정", "재발 방지와 생활 습관 안내"]
+    },
+    {
+      "id": "accident",
+      "title": "교통사고 클리닉",
+      "keywords": ["후유증 케어", "자동차보험", "통증 완화"],
+      "description": "부상 상황에 맞는 최적의 치료로 눈에 보이지 않는 미세 손상까지 잡아내어 후유증을 최소화합니다.",
+      "image": "/images/traffic-accident-clinic.png",
+      "points": ["정확한 원인 진단", "맞춤형 침/약침 치료", "추나요법을 통한 구조적 교정", "후유증 예방을 위한 맞춤형 탕약 처방"]
+    },
+    {
+      "id": "diet",
+      "title": "다이어트 클리닉",
+      "keywords": ["건강한 감량", "감비환", "요요 방지"],
+      "description": "대사 기능을 정상화하여 몸 본연의 아름다움을 되찾는 1:1 맞춤형 다이어트를 제안합니다.",
+      "image": "/images/diet-weight-loss.png",
+      "points": ["정확한 체성분 파악", "적정한 강도의 한약 처방", "몸에 무리가 가지 않는 건강한 다이어트"]
+    },
+    {
+      "id": "growth",
+      "title": "소아 성장 클리닉",
+      "keywords": ["바른 성장", "체질 분석", "성장 플랜"],
+      "description": "허황된 수치가 아닌, 아이의 유전적 체질을 과학적으로 분석하여 정직한 성장 플랜을 제안합니다.",
+      "image": "/images/pediatric-growth-clinic.png",
+      "points": ["최고급 녹용 처방하여 성장 인자 분비 촉진", "아이의 유전적 특징에 맞는 플랜 제시", "초음파 진단을 위한 성장판 분석"]
+    },
+    {
+      "id": "women",
+      "title": "여성 클리닉",
+      "keywords": ["생리통", "난임/산후", "갱년기"],
+      "description": "원장이 직접 복부 초음파를 시행하여 여성 생애 주기별 맞춤 관리를 제공합니다.",
+      "image": "/images/womens-health-clinic.png",
+      "points": ["여성의 생애 주기별 맞춤 진료"]
+    }
+  ],
+
+  "pharmacy": [
+    { 
+      "id": "chuna", 
+      "name": "근막추나", 
+      "image": "/images/chuna-therapy.jpg",
+      "desc": "뼈 소리만 내는 추나는 그만, 속근육까지 부드럽게 풀어주는 개운함" 
+    },
+    { 
+      "id": "pdrn", 
+      "name": "연어약침", 
+      "image": "/images/pharmacoacupunture.png",
+      "desc": "PDRN 성분과 실시간 초음파 유도 시술로 병변 부위에 정확하고 빠른 재생 효과" 
+    },
+    { 
+      "id": "gongjin", 
+      "name": "공진단", 
+      "image": "/images/gongjin-dan.jpg",
+      "desc": "황제의 보약, 극심한 피로와 수술 후 회복을 위한 최고의 선택" 
+    },
+    { 
+      "id": "gyeongok", 
+      "name": "경옥고", 
+      "image": "/images/gyeongok-go.jpg",
+      "desc": "만성 피로 관리와 체력 보강을 위한 데일리 한약" 
+    },
+    { 
+      "id": "smart", 
+      "name": "총명공진단", 
+      "image": "/images/smart-gongjin-dan.png",
+      "desc": "수험생과 직장인을 위해 머리를 맑게 하고 인지 기능을 향상" 
+    },
+    { 
+      "id": "diet", 
+      "name": "감비환", 
+      "image": "/images/gambi-hwan.jpg",
+      "desc": "4단계 밀착 관리로 부작용 걱정 덜고 부담 없이 시작하는 다이어트" 
+    },
+    { 
+      "id": "kids-jelly", 
+      "name": "녹용/소아 젤리", 
+      "image": "/images/deer-antler-jelly.png",
+      "desc": "한약 거부감 있는 아이도 맛있게! 꾸준한 성장 관리를 돕는 보조제" 
+    },
+    { 
+      "id": "candy", 
+      "name": "청인유쾌환 & 통비단", 
+      "image": "/images/cheongin-candy.png",
+      "desc": "건조한 목, 만성 가래, 비염 코막힘에 사탕처럼 편하게 복용하는 한방 캔디"
+    },
+    { 
+      "id": "balm", 
+      "name": "청비고", 
+      "image": "/images/cheongbi-go-balm.png",
+      "desc": "콧물이 많고 코막힘이 심한 만성 비염을 위한 코에 바르는 한방 연고"
+    }
+  ],
+
+  "guide": {
+    "address": "경기 화성시 동탄대로5길 15 그랑파사쥬 1단지 2층",
+    "parking": "그랑파사쥬 건물 내 지하 1~3층 주차 (최대 3시간 무료 지원)",
+    "mapImage": "/images/map-guide.png",
+    "contact": "031-372-6048",
+    "hours": {
+      "weekdays": "월·화·목·금 10:00 - 21:00",
+      "wednesday": "수요일 14:00 - 21:00",
+      "saturday": "토·공휴일 10:00 - 15:00 (점심시간 없음)",
+      "lunch": "점심시간 13:00 - 14:00 (평일 적용)",
+      "closed": "매주 일요일 정기 휴진"
+    }
+  },
+
+  "sns": {
+    "blog": "https://blog.naver.com/khreon121",
+    "talk": "http://talk.naver.com/WOI2HAO",
+    "kakao": "http://pf.kakao.com/_mjYKn/chat"
+  }
+}
