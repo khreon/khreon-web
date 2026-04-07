@@ -38,23 +38,29 @@ export default async function proxy(request: NextRequest) {
     now.setHours(now.getHours() + 9);
     const date = now.toISOString().split('T')[0];
     
-    // 일별 방문 횟수 집계
-    const statsKey = `stats:visits:${date}`;
-    redis.hincrby(statsKey, category, 1).catch(e => console.error("KV Error:", e));
+    // 일별 방문 횟수 집계 (await 필수: Edge 환경에서 비동기 중단 방지)
+    try {
+      const statsKey = `stats:visits:${date}`;
+      await redis.hincrby(statsKey, category, 1);
+    } catch (e) {
+      console.error("KV Error:", e);
+    }
 
     // AI 봇인 경우 상세 내역 저장 (30일 보관)
     if (category !== 'Human') {
-      const detailsKey = `logs:bots:${date}`;
-      const logEntry = JSON.stringify({
-        timestamp: new Date().toISOString(),
-        botName: category,
-        path: request.nextUrl.pathname,
-        userAgent: userAgent
-      });
-      // 트랜잭션 파이프라인 처럼 비동기 백그라운드 호출
-      redis.lpush(detailsKey, logEntry)
-        .then(() => redis.expire(detailsKey, 60 * 60 * 24 * 30))
-        .catch(e => console.error("Log Push Error:", e));
+      try {
+        const detailsKey = `logs:bots:${date}`;
+        const logEntry = JSON.stringify({
+          timestamp: new Date().toISOString(),
+          botName: category,
+          path: request.nextUrl.pathname,
+          userAgent: userAgent
+        });
+        await redis.lpush(detailsKey, logEntry);
+        await redis.expire(detailsKey, 60 * 60 * 24 * 30);
+      } catch (e) {
+        console.error("Log Push Error:", e);
+      }
     }
   }
 
