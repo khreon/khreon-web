@@ -2,6 +2,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import content from '../../content.json';
 import { Menu } from 'lucide-react';
+import ClientTrackedLink from "@/components/ClientTrackedLink";
 
 export default function Header() {
   return (
@@ -17,10 +18,11 @@ export default function Header() {
           ))}
         </nav>
         <div className="flex items-center gap-4">
-          <a href={content.header.bookingUrl} target="_blank" rel="noopener noreferrer" 
+          <ClientTrackedLink href={content.header.bookingUrl} target="_blank" rel="noopener noreferrer" 
+             action="click_booking" category="Header"
              className="inline-flex items-center justify-center px-4 md:px-5 py-2 text-sm font-semibold text-white bg-primary rounded-full hover:bg-primary-dark transition-colors shadow-sm whitespace-nowrap">
             네이버 예약
-          </a>
+          </ClientTrackedLink>
           <button className="md:hidden p-1 text-gray-600">
             <Menu className="w-6 h-6" />
           </button>

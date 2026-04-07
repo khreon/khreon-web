@@ -3,7 +3,7 @@
 import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
 
-export async function loginAdmin(prevState: any, formData: FormData) {
+export async function loginAdmin(prevState: unknown, formData: FormData) {
   const password = formData.get('password') as string;
   const adminPassword = process.env.ADMIN_PASSWORD || 'admin123';
 

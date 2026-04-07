@@ -1,5 +1,6 @@
 import content from '../../content.json';
 import Link from 'next/link';
+import ClientTrackedLink from "@/components/ClientTrackedLink";
 
 export default function Footer() {
   return (
@@ -24,10 +25,10 @@ export default function Footer() {
           <h3 className="font-bold text-gray-900 text-lg mb-4">고객 지원</h3>
           <ul className="space-y-2 flex flex-col items-start font-medium text-gray-500">
              <li><Link href="/guide" className="hover:text-primary transition-colors">오시는 길 안내</Link></li>
-             <li><a href={content.header.bookingUrl} target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">네이버 예약 바로가기</a></li>
-             <li><a href={content.sns.talk} target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">네이버 톡톡 상담</a></li>
-             <li><a href={content.sns.kakao} target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">카카오톡 채널 상담</a></li>
-             <li><a href={content.sns.blog} target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">공식 블로그</a></li>
+             <li><ClientTrackedLink href={content.header.bookingUrl} action="click_booking" category="Footer" label="Naver Booking" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">네이버 예약 바로가기</ClientTrackedLink></li>
+             <li><ClientTrackedLink href={content.sns.talk} action="click_consult" category="Footer" label="Naver Talk" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">네이버 톡톡 상담</ClientTrackedLink></li>
+             <li><ClientTrackedLink href={content.sns.kakao} action="click_consult" category="Footer" label="Kakao Talk" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">카카오톡 채널 상담</ClientTrackedLink></li>
+             <li><ClientTrackedLink href={content.sns.blog} action="click_social" category="Footer" label="Naver Blog" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">공식 블로그</ClientTrackedLink></li>
           </ul>
         </div>
       </div>

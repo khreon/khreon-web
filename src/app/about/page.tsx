@@ -26,7 +26,7 @@ export default function About() {
               )}
               <h3 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">{content.about.doctor.name}</h3>
               <p className="text-gray-600 text-lg md:text-xl leading-relaxed break-keep italic py-4 border-l-4 border-primary pl-6 bg-gray-50/50 rounded-r-xl">
-                "통증의 뿌리를 찾아 근본적인 치유를 돕습니다.<br className="hidden md:block"/> 따뜻한 마음과 차가운 이성으로 환자의 소리에 귀 기울이겠습니다."
+                &quot;통증의 뿌리를 찾아 근본적인 치유를 돕습니다.<br className="hidden md:block"/> 따뜻한 마음과 차가운 이성으로 환자의 소리에 귀 기울이겠습니다.&quot;
               </p>
             </div>
             

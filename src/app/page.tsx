@@ -1,9 +1,10 @@
 import Image from "next/image";
 import Link from "next/link";
 import content from "../../content.json";
-import { Activity, Stethoscope, CarFront, Salad, Sprout, Heart, ChevronRight, CheckCircle2 } from "lucide-react";
+import { Activity, Stethoscope, CarFront, Salad, Sprout, Heart, ChevronRight } from "lucide-react";
 import fs from 'fs';
 import path from 'path';
+import ClientTrackedLink from "@/components/ClientTrackedLink";
 
 // Fallbacks for specific IDs, else defaults
 const ICON_MAP: Record<string, React.ReactNode> = {
@@ -36,15 +37,18 @@ export default function Home() {
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             {content.hero.cta.map((cta, i) => (
-               <a
+               <ClientTrackedLink
                  key={i}
                  href={cta.url}
+                 action={i === 0 ? 'click_booking' : 'click_consult'}
+                 category="Hero"
+                 label={cta.label}
                  target="_blank"
                  rel="noopener noreferrer"
                  className={`inline-flex items-center justify-center gap-2 px-8 py-4 text-lg font-bold rounded-full transition-all transform hover:scale-105 shadow-xl ${i === 0 ? 'bg-primary text-white hover:bg-primary-dark' : 'bg-white text-gray-900 hover:bg-gray-100'}`}
                >
                  {cta.label} {i === 0 && <ChevronRight className="w-5 h-5" />}
-               </a>
+               </ClientTrackedLink>
             ))}
           </div>
         </div>
