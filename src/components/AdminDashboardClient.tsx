@@ -1,6 +1,6 @@
 'use client';
 
-import { Users, Bot, TrendingUp, MonitorSmartphone } from 'lucide-react';
+import { Users, Bot, TrendingUp, MonitorSmartphone, ExternalLink } from 'lucide-react';
 import { 
   PieChart, Pie, Cell, ResponsiveContainer, Tooltip as PieTooltip, Legend as PieLegend,
   LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip as LineTooltip,
@@ -32,20 +32,20 @@ export default function AdminDashboardClient({ todayVisitors, botPercentage, pie
             <h3 className="text-2xl font-bold text-gray-900">{botPercentage}<span className="text-sm font-medium text-gray-400 ml-1">%</span></h3>
           </div>
         </div>
-        <div className="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm flex items-center gap-4">
-          <div className="p-3 bg-purple-50 text-purple-600 rounded-xl"><TrendingUp className="w-6 h-6" /></div>
+        <a href="https://analytics.google.com/" target="_blank" rel="noopener noreferrer" className="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm flex items-center gap-4 hover:border-primary hover:shadow-md transition-all group cursor-pointer">
+          <div className="p-3 bg-purple-50 text-purple-600 rounded-xl group-hover:bg-primary group-hover:text-white transition-colors"><TrendingUp className="w-6 h-6" /></div>
           <div>
-            <p className="text-sm font-medium text-gray-500">GA4 연동 차트</p>
-            <h3 className="text-sm font-bold text-gray-400 mt-1">대시보드에서 확인</h3>
+            <p className="text-sm font-medium text-gray-500 group-hover:text-primary transition-colors">GA4 연동 차트</p>
+            <h3 className="text-sm font-bold text-gray-400 mt-1 flex items-center group-hover:text-primary transition-colors">구글 애널리틱스로 이동 <ExternalLink className="w-3 h-3 ml-1" /></h3>
           </div>
-        </div>
-        <div className="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm flex items-center gap-4">
-          <div className="p-3 bg-amber-50 text-amber-600 rounded-xl"><MonitorSmartphone className="w-6 h-6" /></div>
+        </a>
+        <a href="https://analytics.google.com/" target="_blank" rel="noopener noreferrer" className="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm flex items-center gap-4 hover:border-primary hover:shadow-md transition-all group cursor-pointer">
+          <div className="p-3 bg-amber-50 text-amber-600 rounded-xl group-hover:bg-primary group-hover:text-white transition-colors"><MonitorSmartphone className="w-6 h-6" /></div>
           <div>
-            <p className="text-sm font-medium text-gray-500">기기 환경</p>
-            <h3 className="text-sm font-bold text-gray-400 mt-1">대시보드에서 확인</h3>
+            <p className="text-sm font-medium text-gray-500 group-hover:text-primary transition-colors">접속 환경 분석</p>
+            <h3 className="text-sm font-bold text-gray-400 mt-1 flex items-center group-hover:text-primary transition-colors">구글 애널리틱스로 이동 <ExternalLink className="w-3 h-3 ml-1" /></h3>
           </div>
-        </div>
+        </a>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
