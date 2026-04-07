@@ -1,18 +1,44 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
+import { Redis } from '@upstash/redis';
+
+const redis = new Redis({
+  url: process.env.UPSTASH_REDIS_REST_URL || process.env.KV_REST_API_URL || '',
+  token: process.env.UPSTASH_REDIS_REST_TOKEN || process.env.KV_REST_API_TOKEN || '',
+});
 
 const AI_BOTS = [
   'GPTBot', 'ChatGPT-User', 'ClaudeBot', 'Claude-Web', 
-  'Google-Extended', 'Googlebot', 'PerplexityBot', 'anthropic-ai'
+  'Google-Extended', 'Googlebot', 'PerplexityBot', 'anthropic-ai',
+  'bot', 'crawler', 'spider', 'crawling'
 ];
 
 export default async function proxy(request: NextRequest) {
   const userAgent = request.headers.get('user-agent') || '';
   
-  // 1. Bot Tracking Log
-  const matchedBot = AI_BOTS.find(bot => userAgent.toLowerCase().includes(bot.toLowerCase()));
-  if (matchedBot) {
-    console.log(`[Bot Tracker] Detected AI Bot: ${matchedBot} | Path: ${request.nextUrl.pathname}`);
+  // 1. Bot Tracking Log with Upstash Redis
+  let category = 'Human';
+  const uaLower = userAgent.toLowerCase();
+  
+  if (uaLower.includes('gptbot') || uaLower.includes('chatgpt')) {
+    category = 'GPTBot';
+  } else if (uaLower.includes('googlebot')) {
+    category = 'Googlebot';
+  } else if (uaLower.includes('claude')) {
+    category = 'Claude';
+  } else {
+    const matchedBot = AI_BOTS.find(bot => uaLower.includes(bot.toLowerCase()));
+    if (matchedBot) {
+      category = 'OtherBot';
+    }
+  }
+
+  if (process.env.UPSTASH_REDIS_REST_URL || process.env.KV_REST_API_URL) {
+    const now = new Date();
+    now.setHours(now.getHours() + 9);
+    const date = now.toISOString().split('T')[0];
+    const key = `stats:visits:${date}`;
+    redis.hincrby(key, category, 1).catch(e => console.error("KV Error:", e));
   }
 
   // 2. Admin Route Protection
