@@ -37,8 +37,25 @@ export default async function proxy(request: NextRequest) {
     const now = new Date();
     now.setHours(now.getHours() + 9);
     const date = now.toISOString().split('T')[0];
-    const key = `stats:visits:${date}`;
-    redis.hincrby(key, category, 1).catch(e => console.error("KV Error:", e));
+    
+    // 일별 방문 횟수 집계
+    const statsKey = `stats:visits:${date}`;
+    redis.hincrby(statsKey, category, 1).catch(e => console.error("KV Error:", e));
+
+    // AI 봇인 경우 상세 내역 저장 (30일 보관)
+    if (category !== 'Human') {
+      const detailsKey = `logs:bots:${date}`;
+      const logEntry = JSON.stringify({
+        timestamp: new Date().toISOString(),
+        botName: category,
+        path: request.nextUrl.pathname,
+        userAgent: userAgent
+      });
+      // 트랜잭션 파이프라인 처럼 비동기 백그라운드 호출
+      redis.lpush(detailsKey, logEntry)
+        .then(() => redis.expire(detailsKey, 60 * 60 * 24 * 30))
+        .catch(e => console.error("Log Push Error:", e));
+    }
   }
 
   // 2. Admin Route Protection

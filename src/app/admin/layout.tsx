@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { LayoutDashboard, Users, LogOut, ActivitySquare } from 'lucide-react';
 import { logoutAdmin } from './actions';
+import AdminNavLinks from '@/components/AdminNavLinks';
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -11,16 +12,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
           <ActivitySquare className="w-6 h-6 text-primary mr-2" />
           <span className="font-bold text-lg text-gray-900 tracking-tight">AEO Admin</span>
         </div>
-        <nav className="flex-1 p-4 space-y-1 overflow-y-auto">
-          <Link href="/admin" className="flex items-center px-4 py-3 text-primary bg-primary/5 rounded-xl font-medium">
-            <LayoutDashboard className="w-5 h-5 mr-3" />
-            대시보드
-          </Link>
-          <div className="flex items-center px-4 py-3 text-gray-400 cursor-not-allowed rounded-xl font-medium transition-colors">
-            <Users className="w-5 h-5 mr-3" />
-            방문자 로그 (준비중)
-          </div>
-        </nav>
+        <AdminNavLinks />
         <div className="p-4 border-t border-gray-100 shrink-0">
           <form action={logoutAdmin}>
             <button type="submit" className="flex w-full items-center px-4 py-3 text-gray-500 hover:bg-red-50 hover:text-red-600 rounded-xl font-medium transition-colors">
