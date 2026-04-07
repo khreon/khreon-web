@@ -1,6 +1,11 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
-import { kv } from '@vercel/kv';
+import { Redis } from '@upstash/redis';
+
+const redis = new Redis({
+  url: process.env.UPSTASH_REDIS_REST_URL || process.env.KV_REST_API_URL || '',
+  token: process.env.UPSTASH_REDIS_REST_TOKEN || process.env.KV_REST_API_TOKEN || '',
+});
 
 export async function middleware(request: NextRequest) {
   const path = request.nextUrl.pathname;
@@ -36,11 +41,11 @@ export async function middleware(request: NextRequest) {
     now.setHours(now.getHours() + 9);
     const date = now.toISOString().split('T')[0]; // YYYY-MM-DD
     
-    // Vercel KV에 저장 (환경 변수가 설정되어 있을 때만 실행)
-    if (process.env.KV_REST_API_URL && process.env.KV_REST_API_TOKEN) {
+    // Vercel KV(Upstash Redis)에 저장 (환경 변수가 설정되어 있을 때만 실행)
+    if (process.env.UPSTASH_REDIS_REST_URL || process.env.KV_REST_API_URL) {
       const key = `stats:visits:${date}`;
       // 해시에 카운트 증분 (Fire and forget, no await to prevent slowing down requests)
-      kv.hincrby(key, category, 1).catch(e => console.error("KV Error:", e));
+      redis.hincrby(key, category, 1).catch(e => console.error("KV Error:", e));
     }
   } catch (error) {
     // 미들웨어 예외 시에도 페이지 접속은 원활하게 통과

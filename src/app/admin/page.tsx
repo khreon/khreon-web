@@ -1,5 +1,10 @@
-import { kv } from '@vercel/kv';
+import { Redis } from '@upstash/redis';
 import AdminDashboardClient from '@/components/AdminDashboardClient';
+
+const redis = new Redis({
+  url: process.env.UPSTASH_REDIS_REST_URL || process.env.KV_REST_API_URL || '',
+  token: process.env.UPSTASH_REDIS_REST_TOKEN || process.env.KV_REST_API_TOKEN || '',
+});
 
 export default async function AdminDashboard() {
   // 이번 날짜 문자열 계산 (KST 기준)
@@ -10,9 +15,9 @@ export default async function AdminDashboard() {
 
   // 오늘 데이터 패치
   let todayStats: Record<string, number> | null = null;
-  if (process.env.KV_REST_API_URL) {
+  if (process.env.UPSTASH_REDIS_REST_URL || process.env.KV_REST_API_URL) {
     try {
-      todayStats = await kv.hgetall(todayKey);
+      todayStats = (await redis.hgetall(todayKey)) as Record<string, number>;
     } catch {
       todayStats = null;
     }
@@ -44,10 +49,10 @@ export default async function AdminDashboard() {
     const d = new Date();
     d.setHours(d.getHours() + 9 - (24 * i));
     const dStr = d.toISOString().split('T')[0];
-    let dayStats = null;
-    if (process.env.KV_REST_API_URL) {
+    let dayStats: Record<string, number> | null = null;
+    if (process.env.UPSTASH_REDIS_REST_URL || process.env.KV_REST_API_URL) {
       try {
-        dayStats = await kv.hgetall(`stats:visits:${dStr}`);
+        dayStats = (await redis.hgetall(`stats:visits:${dStr}`)) as Record<string, number>;
       } catch {
         dayStats = null;
       }
