@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import ClientLayoutWrapper from "@/components/ClientLayoutWrapper";
 import content from "../../content.json";
+import GoogleAnalytics from "@/components/GoogleAnalytics";
 
 export const metadata: Metadata = {
   title: `${content.hospitalName} - ${content.slogan}`,
@@ -30,6 +31,7 @@ export default function RootLayout({
   return (
     <html lang="ko">
       <body className="antialiased font-sans">
+        <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID} />
         <ClientLayoutWrapper>
           {children}
         </ClientLayoutWrapper>
