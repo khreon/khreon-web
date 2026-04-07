@@ -1,5 +1,9 @@
 import { Redis } from '@upstash/redis';
 import AdminDashboardClient from '@/components/AdminDashboardClient';
+import { unstable_noStore as noStore } from 'next/cache';
+
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
 
 const redis = new Redis({
   url: process.env.UPSTASH_REDIS_REST_URL || process.env.KV_REST_API_URL || '',
@@ -7,6 +11,8 @@ const redis = new Redis({
 });
 
 export default async function AdminDashboard() {
+  noStore(); // 강제 동적 렌더링을 위해 캐시 무시
+
   // 이번 날짜 문자열 계산 (KST 기준)
   const now = new Date();
   now.setHours(now.getHours() + 9);
