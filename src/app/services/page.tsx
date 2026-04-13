@@ -3,6 +3,16 @@ import Image from "next/image";
 import fs from "fs";
 import path from "path";
 
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "진료 안내 | 경희리온한의원",
+  description: "통증 크리닉, 교통사고 후유증, 다이어트, 소아 성장 등 환자별 맞춤형 진단과 체계적인 치료 시스템을 제공합니다.",
+  alternates: {
+    canonical: '/services',
+  },
+};
+
 export default function Services() {
   return (
     <div className="py-20 animate-in fade-in pb-32">

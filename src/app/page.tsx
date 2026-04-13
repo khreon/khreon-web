@@ -16,6 +16,14 @@ const ICON_MAP: Record<string, React.ReactNode> = {
   women: <Heart className="w-8 h-8 md:w-10 md:h-10 text-primary" />,
 };
 
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  alternates: {
+    canonical: '/',
+  },
+};
+
 export default function Home() {
   return (
     <>

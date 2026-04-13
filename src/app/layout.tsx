@@ -5,6 +5,7 @@ import content from "../../content.json";
 import GoogleAnalytics from "@/components/GoogleAnalytics";
 
 export const metadata: Metadata = {
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://khreon.com'),
   title: `${content.hospitalName} - ${content.slogan}`,
   description: "동탄에 위치한 경희리온한의원입니다. 통증 크리닉, 교통사고 후유증, 다이어트, 소아 성장 등 환자 맞춤형 진료를 제공합니다.",
   keywords: ["동탄 한의원", "통증 치료", "교통사고 후유증", "다이어트", "한의원", "경희리온한의원", "초음파 진단", "추나"],

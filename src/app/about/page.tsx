@@ -2,6 +2,16 @@ import Image from "next/image";
 import content from "../../../content.json";
 import { GraduationCap, Award } from "lucide-react";
 
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "인사말 | 경희리온한의원",
+  description: "환자의 통증의 뿌리를 찾아 근본적인 치유를 돕는 경희리온한의원 대표원장 인사말 및 철학을 확인해보세요.",
+  alternates: {
+    canonical: '/about',
+  },
+};
+
 export default function About() {
   return (
     <div className="animate-in fade-in duration-500 pb-20">

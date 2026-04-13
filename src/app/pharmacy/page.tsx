@@ -3,6 +3,16 @@ import content from "../../../content.json";
 import fs from 'fs';
 import path from 'path';
 
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "한약 및 처방 | 경희리온한의원",
+  description: "식약처 인증 hGMP 청정 한약재를 엄선하여 원장이 직접 처방하는 맞춤형 한약 및 보약 처방 안내입니다.",
+  alternates: {
+    canonical: '/pharmacy',
+  },
+};
+
 export default function Pharmacy() {
   return (
     <div className="py-20 animate-in fade-in pb-32">

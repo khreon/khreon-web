@@ -2,6 +2,16 @@ import Image from "next/image";
 import content from "../../../content.json";
 import { MapPin, Phone, Car, Clock } from "lucide-react";
 
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "오시는 길 | 경희리온한의원",
+  description: "동탄 그랑파사쥬에 위치한 경희리온한의원 오시는 길, 주차 안내, 진료 시간을 안내해 드립니다.",
+  alternates: {
+    canonical: '/guide',
+  },
+};
+
 export default function Guide() {
   return (
     <div className="py-20 animate-in fade-in pb-32">
