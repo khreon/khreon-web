@@ -1,7 +1,7 @@
 'use server';
 
 import { redirect } from 'next/navigation';
-import { createPost, deletePost } from '@/lib/blog';
+import { createPost, deletePost, CATEGORIES, type CategorySlug } from '@/lib/blog';
 
 export async function createBlogPost(prevState: unknown, formData: FormData) {
   const title = (formData.get('title') as string || '').trim();
@@ -11,6 +11,10 @@ export async function createBlogPost(prevState: unknown, formData: FormData) {
     .split(',')
     .map((t) => t.trim())
     .filter(Boolean);
+  const categoryInput = (formData.get('category') as string || '').trim();
+  const category = CATEGORIES.some((c) => c.slug === categoryInput)
+    ? (categoryInput as CategorySlug)
+    : '';
 
   if (!title || !content) {
     return { error: '제목과 본문은 필수입니다.' };
@@ -20,7 +24,7 @@ export async function createBlogPost(prevState: unknown, formData: FormData) {
   // 목록/OG 썸네일용으로, 본문에 삽입된 이미지 URL을 그대로 추출해 둔다.
   const images = [...content.matchAll(/!\[[^\]]*\]\(([^)\s]+)\)/g)].map((m) => m[1]);
 
-  const post = await createPost({ title, excerpt, content, images, tags });
+  const post = await createPost({ title, excerpt, content, images, tags, category });
 
   redirect(`/admin/blog/${post.slug}`);
 }

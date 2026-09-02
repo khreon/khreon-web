@@ -1,7 +1,8 @@
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
-import { marked } from 'marked';
-import { getPost } from '@/lib/blog';
+import Link from 'next/link';
+import { getPost, getCategoryName } from '@/lib/blog';
+import { renderMarkdown } from '@/lib/markdown';
 import content from '../../../../content.json';
 
 export const revalidate = 60;
@@ -35,7 +36,7 @@ export default async function BlogDetail({ params }: Props) {
 
   if (!post) notFound();
 
-  const html = await marked.parse(post.content);
+  const html = await renderMarkdown(post.content);
 
   const jsonLd = {
     '@context': 'https://schema.org',
@@ -58,9 +59,19 @@ export default async function BlogDetail({ params }: Props) {
       />
 
       <div className="py-12 md:py-16">
-        <p className="text-sm text-gray-400 mb-3">
-          {new Date(post.publishedAt).toLocaleDateString('ko-KR')}
-        </p>
+        <div className="flex items-center gap-3 mb-3">
+          {post.category && (
+            <Link
+              href={`/blog/category/${post.category}`}
+              className="text-xs bg-primary text-white px-3 py-1 rounded-full font-medium hover:bg-primary-dark transition-colors"
+            >
+              {getCategoryName(post.category)}
+            </Link>
+          )}
+          <p className="text-sm text-gray-400">
+            {new Date(post.publishedAt).toLocaleDateString('ko-KR')}
+          </p>
+        </div>
         <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6 tracking-tight break-keep">
           {post.title}
         </h1>

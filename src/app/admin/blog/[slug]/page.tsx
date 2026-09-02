@@ -2,7 +2,7 @@ import { getPost } from '@/lib/blog';
 import { deleteBlogPost } from '../actions';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
-import { marked } from 'marked';
+import { renderMarkdown } from '@/lib/markdown';
 import { ExternalLink, Trash2 } from 'lucide-react';
 
 export const dynamic = 'force-dynamic';
@@ -13,7 +13,7 @@ export default async function AdminBlogDetail({ params }: { params: Promise<{ sl
 
   if (!post) notFound();
 
-  const html = await marked.parse(post.content);
+  const html = await renderMarkdown(post.content);
 
   const deleteWithSlug = deleteBlogPost.bind(null, post.slug);
 

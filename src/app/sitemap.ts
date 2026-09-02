@@ -1,5 +1,5 @@
 import { MetadataRoute } from 'next'
-import { listPosts } from '@/lib/blog'
+import { listPosts, CATEGORIES } from '@/lib/blog'
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // TODO: 실제 배포될 도메인으로 변경해주세요.
@@ -13,6 +13,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: 'daily',
       priority: 0.7,
     },
+    ...CATEGORIES.map((c) => ({
+      url: `${baseUrl}/blog/category/${c.slug}`,
+      lastModified: new Date(),
+      changeFrequency: 'daily' as const,
+      priority: 0.6,
+    })),
     ...posts.map((post) => ({
       url: `${baseUrl}/blog/${post.slug}`,
       lastModified: new Date(post.publishedAt),

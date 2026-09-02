@@ -3,6 +3,7 @@
 import { useActionState, useRef, useState } from 'react';
 import { upload } from '@vercel/blob/client';
 import { createBlogPost } from '../actions';
+import { CATEGORIES } from '@/lib/blog';
 import { ImagePlus } from 'lucide-react';
 
 export default function NewBlogPost() {
@@ -116,6 +117,21 @@ export default function NewBlogPost() {
           <p className="text-xs text-gray-400 mt-1.5">
             본문 안에 원하는 위치마다 커서를 두고 이미지를 삽입하세요. 4~5장 정도를 글 흐름에 맞게 배치하는 걸 추천합니다.
           </p>
+        </div>
+
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-2">카테고리</label>
+          <select
+            name="category"
+            required
+            defaultValue=""
+            className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all bg-white"
+          >
+            <option value="" disabled>카테고리를 선택하세요</option>
+            {CATEGORIES.map((c) => (
+              <option key={c.slug} value={c.slug}>{c.name}</option>
+            ))}
+          </select>
         </div>
 
         <div>
