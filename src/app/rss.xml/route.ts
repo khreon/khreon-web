@@ -1,8 +1,18 @@
 import { NextResponse } from 'next/server';
+import { listPosts } from '@/lib/blog';
 
 export async function GET() {
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://khreon.com';
-  
+
+  const posts = await listPosts(50).catch(() => []);
+  const postItems = posts.map((post) => `
+    <item>
+      <title>${post.title}</title>
+      <link>${baseUrl}/blog/${post.slug}</link>
+      <description>${post.excerpt || ''}</description>
+      <pubDate>${new Date(post.publishedAt).toUTCString()}</pubDate>
+    </item>`).join('');
+
   const rss = `<?xml version="1.0" encoding="UTF-8" ?>
 <rss version="2.0">
   <channel>
@@ -32,6 +42,7 @@ export async function GET() {
       <description>동탄역 인근 경희리온한의원 진료 시간 및 주차 안내입니다. 평일 야간 진료를 진행합니다.</description>
       <pubDate>${new Date().toUTCString()}</pubDate>
     </item>
+    ${postItems}
   </channel>
 </rss>`;
 

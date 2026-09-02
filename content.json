@@ -9,6 +9,7 @@
       {"label": "브랜드 스토리", "path": "/about"},
       {"label": "진료 안내", "path": "/services"},
       {"label": "경희리온 처방", "path": "/pharmacy"},
+      {"label": "건강 칼럼", "path": "/blog"},
       {"label": "이용 안내", "path": "/guide"}
     ],
     "bookingUrl": "https://naver.me/Gmb5YhR5"
