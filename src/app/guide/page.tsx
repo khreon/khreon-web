@@ -1,6 +1,5 @@
 import content from "../../../content.json";
 import { MapPin, Phone, Car, Clock } from "lucide-react";
-import KakaoMap from "@/components/KakaoMap";
 
 import { Metadata } from "next";
 
@@ -23,7 +22,11 @@ export default function Guide() {
 
         <div className="bg-white rounded-[2rem] md:rounded-[3rem] shadow-[0_8px_40px_rgba(0,0,0,0.06)] border border-gray-100 overflow-hidden">
           <div className="relative w-full aspect-video md:aspect-[21/9]">
-            <KakaoMap address={content.guide.address} />
+            <iframe
+              src="https://map.kakao.com/?itemId=1082491185"
+              title="경희리온한의원 카카오맵"
+              className="absolute inset-0 w-full h-full border-0"
+            />
           </div>
           <div className="flex flex-col sm:flex-row gap-3 justify-center px-8 py-6 border-t border-gray-100">
             <a href="https://map.naver.com/p/entry/place/1474751263" target="_blank" rel="noopener noreferrer" className="px-6 py-3 bg-white text-gray-900 font-bold rounded-full shadow-md hover:shadow-xl hover:-translate-y-0.5 transition-all text-sm flex items-center justify-center gap-2 border-2 border-primary/30 hover:border-primary whitespace-nowrap">
