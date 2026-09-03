@@ -1,6 +1,6 @@
-import Image from "next/image";
 import content from "../../../content.json";
 import { MapPin, Phone, Car, Clock } from "lucide-react";
+import KakaoMap from "@/components/KakaoMap";
 
 import { Metadata } from "next";
 
@@ -23,9 +23,14 @@ export default function Guide() {
 
         <div className="bg-white rounded-[2rem] md:rounded-[3rem] shadow-[0_8px_40px_rgba(0,0,0,0.06)] border border-gray-100 overflow-hidden">
           <div className="relative w-full aspect-video md:aspect-[21/9]">
-            <Image src={content.guide.mapImage} alt="오시는 길 약도" fill className="object-cover" />
-            <a href="https://map.naver.com" target="_blank" rel="noopener noreferrer" className="absolute bottom-6 right-6 md:bottom-8 md:right-8 px-6 py-3 bg-white text-gray-900 font-bold rounded-full shadow-lg hover:shadow-2xl transition-all hover:scale-105 text-sm flex items-center gap-2 z-10 border border-gray-100">
-               <MapPin className="w-5 h-5 text-primary" /> 네이버 지도에서 보기
+            <KakaoMap address={content.guide.address} />
+          </div>
+          <div className="flex flex-col sm:flex-row gap-3 justify-center px-8 py-6 border-t border-gray-100">
+            <a href="https://map.naver.com/p/entry/place/1474751263" target="_blank" rel="noopener noreferrer" className="px-6 py-3 bg-white text-gray-900 font-bold rounded-full shadow-md hover:shadow-xl hover:-translate-y-0.5 transition-all text-sm flex items-center justify-center gap-2 border-2 border-primary/30 hover:border-primary whitespace-nowrap">
+              <MapPin className="w-5 h-5 text-primary" /> 네이버 지도에서 보기
+            </a>
+            <a href="https://place.map.kakao.com/1082491185" target="_blank" rel="noopener noreferrer" className="px-6 py-3 bg-white text-gray-900 font-bold rounded-full shadow-md hover:shadow-xl hover:-translate-y-0.5 transition-all text-sm flex items-center justify-center gap-2 border-2 border-primary/30 hover:border-primary whitespace-nowrap">
+              <MapPin className="w-5 h-5 text-primary" /> 카카오맵에서 보기
             </a>
           </div>
           
