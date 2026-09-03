@@ -2,7 +2,7 @@ import { MetadataRoute } from 'next'
 
 export default function robots(): MetadataRoute.Robots {
   // TODO: 실제 배포될 도메인으로 변경해주세요.
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://khreon.com'
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.khreon.com'
 
   return {
     rules: {

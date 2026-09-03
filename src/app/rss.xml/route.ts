@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 import { listPosts } from '@/lib/blog';
 
 export async function GET() {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://khreon.com';
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.khreon.com';
 
   const posts = await listPosts(50).catch(() => []);
   const postItems = posts.map((post) => `

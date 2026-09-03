@@ -3,7 +3,7 @@ import { listPosts, CATEGORIES } from '@/lib/blog'
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // TODO: 실제 배포될 도메인으로 변경해주세요.
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://khreon.com'
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.khreon.com'
 
   const posts = await listPosts(1000).catch(() => []);
   const blogUrls: MetadataRoute.Sitemap = [
