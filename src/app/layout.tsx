@@ -11,6 +11,9 @@ export const metadata: Metadata = {
   keywords: ["동탄 한의원", "통증 치료", "교통사고 후유증", "다이어트", "한의원", "경희리온한의원", "초음파 진단", "추나"],
   verification: {
     google: '3noARHdrnozCb34bLXyhk8-OdpWUhSIhOM25ZQ07RdM',
+    other: {
+      'naver-site-verification': '37451698817471579fbbf889858b515266bd1792',
+    },
   },
 };
 
