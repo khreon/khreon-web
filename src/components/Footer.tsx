@@ -18,7 +18,7 @@ export default function Footer() {
             <li>{content.guide.hours.weekdays}</li>
             <li>{content.guide.hours.wednesday}</li>
             <li>{content.guide.hours.saturday}</li>
-            <li className="text-gray-400 mt-3 text-xs leading-relaxed">{content.guide.hours.lunch}<br />{content.guide.hours.closed}</li>
+            <li className="text-gray-400 mt-3 text-xs leading-relaxed">{content.guide.hours.lunch}</li>
           </ul>
         </div>
         <div>

@@ -81,13 +81,12 @@ export default function Guide() {
                   <span className="text-gray-900 font-bold text-xl">{content.guide.hours.wednesday.replace("수요일 ", "")}</span>
                 </li>
                 <li className="flex justify-between items-center border-b border-gray-100 pb-4">
-                  <span className="text-gray-600 font-medium text-lg">토·공휴일</span>
-                  <span className="text-gray-900 font-bold text-xl">{content.guide.hours.saturday.replace("토·공휴일 ", "")}</span>
+                  <span className="text-gray-600 font-medium text-lg">토·일·공휴일</span>
+                  <span className="text-gray-900 font-bold text-xl">{content.guide.hours.saturday.replace("토·일·공휴일 ", "")}</span>
                 </li>
               </ul>
               <div className="mt-8 pt-4 space-y-3 text-sm text-gray-500 bg-gray-50 p-5 rounded-2xl border border-gray-100">
                 <p className="flex gap-2"><span className="font-bold text-gray-700 flex-shrink-0">점심시간</span> <span className="break-keep">{content.guide.hours.lunch.replace("점심시간 ", "")}</span></p>
-                <p className="flex gap-2"><span className="font-bold text-gray-700 flex-shrink-0">휴무안내</span> <span className="text-red-500 font-medium">{content.guide.hours.closed}</span></p>
               </div>
             </div>
           </div>

@@ -53,7 +53,7 @@ export default function Home() {
                  label={cta.label}
                  target="_blank"
                  rel="noopener noreferrer"
-                 className={`inline-flex items-center justify-center gap-2 px-8 py-4 text-lg font-bold rounded-full transition-all transform hover:scale-105 shadow-xl ${i === 0 ? 'bg-primary text-white hover:bg-primary-dark' : 'bg-white text-gray-900 hover:bg-gray-100'}`}
+                 className={`inline-flex items-center justify-center gap-2 px-8 py-4 text-lg font-bold rounded-full transition-all transform hover:scale-105 shadow-xl ${i === 0 ? 'bg-primary text-white hover:bg-primary-dark' : 'bg-[#FEE500] text-[#191919] hover:bg-[#FDD800]'}`}
                >
                  {cta.label} {i === 0 && <ChevronRight className="w-5 h-5" />}
                </ClientTrackedLink>
