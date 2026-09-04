@@ -23,8 +23,9 @@ export default function Guide() {
         <div className="bg-white rounded-[2rem] md:rounded-[3rem] shadow-[0_8px_40px_rgba(0,0,0,0.06)] border border-gray-100 overflow-hidden">
           <div className="relative w-full aspect-video md:aspect-[21/9]">
             <iframe
-              src="https://map.kakao.com/?itemId=1082491185"
-              title="경희리온한의원 카카오맵"
+              src="https://www.google.com/maps/embed?pb=!1m2!2m1!1z6rK97Z2s66as7Jio7ZWc7J2Y7JuQ"
+              title="경희리온한의원 구글맵"
+              loading="lazy"
               className="absolute inset-0 w-full h-full border-0"
             />
           </div>
