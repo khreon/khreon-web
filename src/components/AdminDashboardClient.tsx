@@ -1,10 +1,11 @@
 'use client';
 
 import { Users, Bot, TrendingUp, MonitorSmartphone, ExternalLink } from 'lucide-react';
-import { 
+import {
   PieChart, Pie, Cell, ResponsiveContainer, Tooltip as PieTooltip, Legend as PieLegend,
   LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip as LineTooltip,
 } from 'recharts';
+import AdminStatsRangeQuery from '@/components/AdminStatsRangeQuery';
 
 interface DashboardProps {
   todayVisitors: number;
@@ -14,6 +15,9 @@ interface DashboardProps {
 }
 
 export default function AdminDashboardClient({ todayVisitors, botPercentage, pieData, lineData }: DashboardProps) {
+  const isPlaceholder = pieData.length === 1 && pieData[0].fill === '#e2e8f0';
+  const pieTotal = pieData.reduce((sum, d) => sum + d.value, 0);
+
   return (
     <div className="space-y-8 animate-in fade-in duration-500">
       {/* KPI Cards */}
@@ -97,9 +101,30 @@ export default function AdminDashboardClient({ todayVisitors, botPercentage, pie
               </PieChart>
             </ResponsiveContainer>
           </div>
+
+          {!isPlaceholder && (
+            <ul className="mt-2 space-y-1.5">
+              {pieData.map((entry, index) => (
+                <li key={index} className="flex items-center justify-between text-sm">
+                  <span className="flex items-center gap-2 text-gray-600">
+                    <span className="w-2.5 h-2.5 rounded-full inline-block" style={{ backgroundColor: entry.fill }} />
+                    {entry.name}
+                  </span>
+                  <span className="text-gray-800 font-medium">
+                    {entry.value.toLocaleString()}회
+                    <span className="text-gray-400 font-normal ml-1">
+                      ({pieTotal > 0 ? Math.round((entry.value / pieTotal) * 100) : 0}%)
+                    </span>
+                  </span>
+                </li>
+              ))}
+            </ul>
+          )}
         </div>
 
       </div>
+
+      <AdminStatsRangeQuery />
     </div>
   );
 }
