@@ -49,6 +49,33 @@ function slugify(title: string): string {
   return base ? `${base}-${suffix}` : `post-${suffix}`;
 }
 
+function normalizeSlugCandidate(candidate: string): string {
+  return candidate
+    .trim()
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '');
+}
+
+// 클라이언트(에이전트)가 지정한 slug 후보를 정규화하고, 기존 글과 겹치면 접미사를 붙여 유일성을 보장한다.
+// 후보가 없거나 정규화 결과가 빈 문자열이면 기존 자동 생성 로직(slugify)으로 폴백한다.
+export async function resolveUniqueSlug(candidate: string | undefined, title: string): Promise<string> {
+  const normalized = candidate ? normalizeSlugCandidate(candidate) : '';
+  if (!normalized) return slugify(title);
+
+  let slug = normalized;
+  let n = 2;
+  while (await getPost(slug)) {
+    if (n > 50) {
+      slug = `${normalized}-${Date.now().toString(36)}`;
+      break;
+    }
+    slug = `${normalized}-${n}`;
+    n++;
+  }
+  return slug;
+}
+
 export async function createPost(data: {
   title: string;
   excerpt: string;

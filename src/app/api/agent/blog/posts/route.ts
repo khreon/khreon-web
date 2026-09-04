@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { createPost, CATEGORIES, type CategorySlug } from '@/lib/blog';
+import { createPost, resolveUniqueSlug, CATEGORIES, type CategorySlug } from '@/lib/blog';
 import { verifyAgentAuth } from '@/lib/agentAuth';
 
 export async function POST(request: Request): Promise<NextResponse> {
@@ -30,7 +30,10 @@ export async function POST(request: Request): Promise<NextResponse> {
     // 본문 마크다운에 삽입된 이미지 URL을 목록/OG 썸네일용으로 추출
     const images = [...content.matchAll(/!\[[^\]]*\]\(([^)\s]+)\)/g)].map((m) => m[1]);
 
-    const post = await createPost({ title, excerpt, content, images, tags, category });
+    const slugInput: string | undefined = typeof body.slug === 'string' ? body.slug : undefined;
+    const slug = await resolveUniqueSlug(slugInput, title);
+
+    const post = await createPost({ title, excerpt, content, images, tags, category, slug });
 
     return NextResponse.json({ slug: post.slug, url: `https://www.khreon.com/blog/${post.slug}` });
   } catch (error) {
