@@ -109,6 +109,37 @@ export async function createPost(data: {
   return post;
 }
 
+export async function updatePost(
+  slug: string,
+  data: {
+    title: string;
+    excerpt: string;
+    content: string;
+    images: string[];
+    tags: string[];
+    category: CategorySlug | '';
+  },
+): Promise<BlogPost | null> {
+  const existing = await getPost(slug);
+  if (!existing) return null;
+
+  const post: BlogPost = { ...existing, ...data };
+
+  await redis.set(postKey(slug), JSON.stringify(post));
+
+  if (existing.category !== post.category) {
+    if (existing.category) {
+      await redis.zrem(categoryIndexKey(existing.category), slug);
+    }
+    if (post.category) {
+      const score = new Date(post.publishedAt).getTime();
+      await redis.zadd(categoryIndexKey(post.category), { score, member: slug });
+    }
+  }
+
+  return post;
+}
+
 export async function getPost(slug: string): Promise<BlogPost | null> {
   const raw = await redis.get<string>(postKey(slug));
   if (!raw) return null;

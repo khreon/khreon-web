@@ -1,7 +1,7 @@
 'use server';
 
 import { redirect } from 'next/navigation';
-import { createPost, deletePost, CATEGORIES, type CategorySlug } from '@/lib/blog';
+import { createPost, updatePost, deletePost, CATEGORIES, type CategorySlug } from '@/lib/blog';
 
 export async function createBlogPost(prevState: unknown, formData: FormData) {
   const title = (formData.get('title') as string || '').trim();
@@ -25,6 +25,33 @@ export async function createBlogPost(prevState: unknown, formData: FormData) {
   const images = [...content.matchAll(/!\[[^\]]*\]\(([^)\s]+)\)/g)].map((m) => m[1]);
 
   const post = await createPost({ title, excerpt, content, images, tags, category });
+
+  redirect(`/admin/blog/${post.slug}`);
+}
+
+export async function updateBlogPost(slug: string, prevState: unknown, formData: FormData) {
+  const title = (formData.get('title') as string || '').trim();
+  const excerpt = (formData.get('excerpt') as string || '').trim();
+  const content = (formData.get('content') as string || '').trim();
+  const tags = (formData.get('tags') as string || '')
+    .split(',')
+    .map((t) => t.trim())
+    .filter(Boolean);
+  const categoryInput = (formData.get('category') as string || '').trim();
+  const category = CATEGORIES.some((c) => c.slug === categoryInput)
+    ? (categoryInput as CategorySlug)
+    : '';
+
+  if (!title || !content) {
+    return { error: '제목과 본문은 필수입니다.' };
+  }
+
+  const images = [...content.matchAll(/!\[[^\]]*\]\(([^)\s]+)\)/g)].map((m) => m[1]);
+
+  const post = await updatePost(slug, { title, excerpt, content, images, tags, category });
+  if (!post) {
+    return { error: '존재하지 않는 글입니다.' };
+  }
 
   redirect(`/admin/blog/${post.slug}`);
 }

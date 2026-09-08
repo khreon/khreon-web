@@ -3,7 +3,7 @@ import { deleteBlogPost } from '../actions';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { renderMarkdown } from '@/lib/markdown';
-import { ExternalLink, Trash2 } from 'lucide-react';
+import { ExternalLink, Pencil, Trash2 } from 'lucide-react';
 
 export const dynamic = 'force-dynamic';
 
@@ -28,6 +28,12 @@ export default async function AdminBlogDetail({ params }: { params: Promise<{ sl
             className="inline-flex items-center gap-2 text-sm font-medium text-gray-600 hover:text-primary px-3 py-2 rounded-lg hover:bg-gray-50"
           >
             <ExternalLink className="w-4 h-4" /> 공개 페이지 보기
+          </Link>
+          <Link
+            href={`/admin/blog/${post.slug}/edit`}
+            className="inline-flex items-center gap-2 text-sm font-medium text-gray-600 hover:text-primary px-3 py-2 rounded-lg hover:bg-gray-50"
+          >
+            <Pencil className="w-4 h-4" /> 수정
           </Link>
           <form action={deleteWithSlug}>
             <button
