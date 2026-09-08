@@ -1,8 +1,10 @@
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
-import { getPost, getCategoryName } from '@/lib/blog';
+import { getPost, getCategoryName, listPostsByCategory } from '@/lib/blog';
 import { renderMarkdown } from '@/lib/markdown';
+import BlogCTACard from '@/components/BlogCTACard';
+import BlogRelatedPosts from '@/components/BlogRelatedPosts';
 import content from '../../../../content.json';
 
 export const revalidate = 60;
@@ -37,6 +39,10 @@ export default async function BlogDetail({ params }: Props) {
   if (!post) notFound();
 
   const html = await renderMarkdown(post.content);
+
+  const relatedPosts = post.category
+    ? (await listPostsByCategory(post.category, 4)).filter((p) => p.slug !== post.slug).slice(0, 3)
+    : [];
 
   const jsonLd = {
     '@context': 'https://schema.org',
@@ -90,6 +96,9 @@ export default async function BlogDetail({ params }: Props) {
         className="prose prose-lg max-w-none break-keep prose-headings:font-bold prose-a:text-primary prose-img:rounded-3xl"
         dangerouslySetInnerHTML={{ __html: html }}
       />
+
+      <BlogCTACard />
+      <BlogRelatedPosts posts={relatedPosts} />
     </article>
   );
 }
