@@ -69,7 +69,51 @@ export default function About() {
         </div>
       </section>
 
-      <section className="py-20 bg-gray-50 px-4 rounded-t-[3rem]">
+      <section className="py-20 px-4 bg-gray-50">
+        <div className="max-w-screen-xl mx-auto flex flex-col md:flex-row-reverse gap-12 lg:gap-20 items-center">
+          <div className="w-full md:w-5/12">
+            <div className="relative aspect-[3/4] rounded-3xl overflow-hidden shadow-2xl">
+              <Image src={content.about.doctor2.image} alt="진료원장" fill className="object-cover" />
+            </div>
+          </div>
+          <div className="w-full md:w-7/12">
+            <div className="mb-10">
+              {content.about.doctor2.specialty && (
+                <h2 className="text-xl text-primary font-bold mb-3 tracking-wide">{content.about.doctor2.specialty}</h2>
+              )}
+              <h3 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">{content.about.doctor2.name}</h3>
+            </div>
+
+            <div className="grid sm:grid-cols-2 gap-10 mt-12">
+              <div>
+                <div className="flex items-center gap-3 mb-5 pb-2 border-b border-gray-200">
+                  <GraduationCap className="w-6 h-6 text-primary" />
+                  <h4 className="text-xl font-bold text-gray-800">학력 및 약력</h4>
+                </div>
+                <ul className="space-y-3 text-gray-600 list-disc list-inside marker:text-primary/50">
+                  <li>{content.about.doctor2.education}</li>
+                  {content.about.doctor2.experience.map((item, idx) => (
+                    <li key={idx}>{item}</li>
+                  ))}
+                </ul>
+              </div>
+              <div>
+                <div className="flex items-center gap-3 mb-5 pb-2 border-b border-gray-200">
+                  <Award className="w-6 h-6 text-primary" />
+                  <h4 className="text-xl font-bold text-gray-800">학회 활동</h4>
+                </div>
+                <ul className="space-y-3 text-gray-600 list-disc list-inside marker:text-primary/50">
+                  {content.about.doctor2.memberships.map((item, idx) => (
+                    <li key={idx}>{item}</li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-20 bg-white px-4 rounded-t-[3rem]">
         <div className="max-w-screen-xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-16 text-gray-900 tracking-tight">쾌적하고 편안한 진료 환경</h2>
           <div className="grid md:grid-cols-2 gap-8 lg:gap-12">
