@@ -39,3 +39,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# 다른 원장님께 전달용으로만 쓰는 문서 (커밋하지 않음)
+/블로그-구축-가이드.md
