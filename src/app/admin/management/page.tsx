@@ -43,12 +43,17 @@ const MANAGEMENT_SECTIONS: ManagementSection[] = [
     ],
   },
   {
-    title: '인사',
+    title: '매뉴얼',
     links: [
       {
         label: '원장 인계',
         type: 'doc',
         href: 'https://docs.google.com/document/d/1UDc_62DOu97wA_4o1J0MKhT2L680Q_5ipQod-dzQgg8/edit?tab=t.0#heading=h.3fvs7actsnr3',
+      },
+      {
+        label: '원내 매뉴얼',
+        type: 'doc',
+        href: 'https://docs.google.com/document/d/1nPd5R9gBMZOf2L1OEgU1a1AUBpyVAvFqBp6_KyAde5s/edit?tab=t.0#heading=h.j4r0vk8ppf9x',
       },
     ],
   },
