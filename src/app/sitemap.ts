@@ -1,5 +1,6 @@
 import { MetadataRoute } from 'next'
 import { listPosts, CATEGORIES } from '@/lib/blog'
+import { serviceDetails } from '@/lib/serviceDetails'
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // TODO: 실제 배포될 도메인으로 변경해주세요.
@@ -26,6 +27,16 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.6,
     })),
   ];
+
+  // 시범(isSample) 페이지는 noindex 이므로 사이트맵에서 제외한다.
+  const serviceUrls: MetadataRoute.Sitemap = Object.values(serviceDetails)
+    .filter((detail) => !detail.isSample)
+    .map((detail) => ({
+      url: `${baseUrl}/services/${detail.slug}`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly' as const,
+      priority: 0.7,
+    }));
 
   return [
     {
@@ -58,6 +69,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: 'monthly',
       priority: 0.8,
     },
+    ...serviceUrls,
     ...blogUrls,
   ]
 }
