@@ -157,7 +157,7 @@ export default async function ServiceDetailPage({ params }: Props) {
             <div className="relative aspect-[4/3] rounded-3xl overflow-hidden bg-gray-50 border border-gray-100 shadow-sm">
               <Image
                 src={detail.diagnosis.image}
-                alt="진단 장비"
+                alt={`${service.title} 진단`}
                 fill
                 sizes="(min-width: 768px) 50vw, 100vw"
                 className="object-cover"
@@ -241,6 +241,36 @@ export default async function ServiceDetailPage({ params }: Props) {
           </ol>
         </section>
 
+        {/* 5-1. 추가 안내 (클리닉별 선택) */}
+        {detail.extraSections?.map((sec) => (
+          <section key={sec.title} className="py-10 md:py-14 border-t border-gray-100">
+            <SectionHeading eyebrow={sec.eyebrow} title={sec.title} description={sec.description} />
+            {sec.numbered ? (
+              <ol className="grid md:grid-cols-3 gap-4">
+                {sec.items.map((item, i) => (
+                  <li key={item.title} className="rounded-3xl border border-gray-200 bg-white p-6 shadow-sm">
+                    <span className="w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center text-sm font-bold mb-4">
+                      {i + 1}
+                    </span>
+                    <h3 className="font-bold text-gray-900 text-lg mb-2 break-keep">{item.title}</h3>
+                    <p className="text-gray-600 leading-relaxed break-keep">{item.description}</p>
+                  </li>
+                ))}
+              </ol>
+            ) : (
+              <div className="grid sm:grid-cols-2 gap-4">
+                {sec.items.map((item) => (
+                  <div key={item.title} className="rounded-3xl bg-gray-50 border border-gray-100 p-6">
+                    <h3 className="font-bold text-gray-900 text-lg mb-2 break-keep">{item.title}</h3>
+                    <p className="text-gray-600 leading-relaxed break-keep">{item.description}</p>
+                  </div>
+                ))}
+              </div>
+            )}
+            {sec.note && <p className="mt-5 text-sm text-gray-500 break-keep">※ {sec.note}</p>}
+          </section>
+        ))}
+
         {/* 6. 생활 관리 */}
         <section className="py-10 md:py-14 border-t border-gray-100">
           <SectionHeading eyebrow="생활 관리" title="치료 효과를 오래 유지하려면" />
@@ -276,7 +306,7 @@ export default async function ServiceDetailPage({ params }: Props) {
         {/* 8. 관련 칼럼 + CTA + 내원 안내 */}
         <section className="border-t border-gray-100 pt-4 max-w-screen-md mx-auto">
           <BlogRelatedPosts posts={relatedPosts} />
-          <BlogCTACard eyebrow="어깨 통증이 신경 쓰이신다면" trackingCategory={trackingCategory} />
+          <BlogCTACard eyebrow={detail.ctaEyebrow} trackingCategory={trackingCategory} />
 
           <div className="mt-6 rounded-3xl border border-gray-200 bg-white p-6 md:p-8 shadow-sm space-y-4">
             <div className="flex items-start gap-3">
