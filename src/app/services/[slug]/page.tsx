@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { Calendar, ChevronDown, ChevronRight, Check, Clock, MapPin, Phone } from 'lucide-react';
 import content from '../../../../content.json';
-import { getServiceDetail, serviceDetails } from '@/lib/serviceDetails';
+import { getServiceDetailBySlug, serviceDetails } from '@/lib/serviceDetails';
 import { listPostsByCategory } from '@/lib/blog';
 import BlogCTACard from '@/components/BlogCTACard';
 import BlogRelatedPosts from '@/components/BlogRelatedPosts';
@@ -12,22 +12,22 @@ import ClientTrackedLink from '@/components/ClientTrackedLink';
 
 export const revalidate = 60;
 
-type Props = { params: Promise<{ id: string }> };
+type Props = { params: Promise<{ slug: string }> };
 
 export function generateStaticParams() {
-  return Object.keys(serviceDetails).map((id) => ({ id }));
+  return Object.keys(serviceDetails).map((slug) => ({ slug }));
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const { id } = await params;
-  const service = content.services.find((s) => s.id === id);
-  const detail = getServiceDetail(id);
+  const { slug } = await params;
+  const detail = getServiceDetailBySlug(slug);
+  const service = detail && content.services.find((s) => s.id === detail.id);
   if (!service || !detail) return {};
 
   return {
     title: `${service.title} | 경희리온한의원`,
     description: detail.hero.sub,
-    alternates: { canonical: `/services/${id}` },
+    alternates: { canonical: `/services/${slug}` },
     robots: detail.isSample ? { index: false, follow: false } : undefined,
   };
 }
@@ -43,16 +43,16 @@ function SectionHeading({ eyebrow, title, description }: { eyebrow: string; titl
 }
 
 export default async function ServiceDetailPage({ params }: Props) {
-  const { id } = await params;
-  const service = content.services.find((s) => s.id === id);
-  const detail = getServiceDetail(id);
+  const { slug } = await params;
+  const detail = getServiceDetailBySlug(slug);
+  const service = detail && content.services.find((s) => s.id === detail.id);
   if (!service || !detail) notFound();
 
   const relatedPosts = detail.relatedCategory
     ? (await listPostsByCategory(detail.relatedCategory, 3).catch(() => []))
     : [];
 
-  const trackingCategory = `ServiceDetail_${id}`;
+  const trackingCategory = `ServiceDetail_${detail.id}`;
   const phone = content.guide.contact;
 
   const jsonLd = {

@@ -3,6 +3,8 @@ import type { CategorySlug } from '@/lib/blog';
 export type ServiceDetail = {
   /** content.json services[].id 와 동일 */
   id: string;
+  /** 상세 페이지 주소 (/services/[slug]). 영문 소문자와 하이픈만 사용. */
+  slug: string;
   /** true 이면 시범 안내 배너를 보여주고 검색엔진 색인을 막는다. 실제 내용 확정 후 제거. */
   isSample?: boolean;
   hero: {
@@ -49,6 +51,7 @@ export type ServiceDetail = {
 // 아래 수치(가격, 횟수, 기간)와 문구는 시범용 임의 샘플입니다. 실제 값으로 교체하세요.
 const joint: ServiceDetail = {
   id: 'joint',
+  slug: 'shoulder-joint-clinic',
   isSample: true,
   hero: {
     headline: '어깨 통증, 원인을 눈으로 확인하고 치료합니다',
@@ -194,6 +197,7 @@ const joint: ServiceDetail = {
 
 const accident: ServiceDetail = {
   id: 'accident',
+  slug: 'traffic-accident-clinic',
   isSample: true,
   hero: {
     headline: '사고 후 통증, 눈에 보이지 않는 손상까지 살펴봅니다',
@@ -393,6 +397,7 @@ const accident: ServiceDetail = {
 
 const spine: ServiceDetail = {
   id: 'spine',
+  slug: 'spine-clinic',
   isSample: true,
   hero: {
     headline: '목·허리 통증, 원인부터 정확히 확인합니다',
@@ -538,12 +543,14 @@ const spine: ServiceDetail = {
   relatedCategory: 'orthopedics',
 };
 
-export const serviceDetails: Record<string, ServiceDetail> = {
-  joint,
-  accident,
-  spine,
-};
+export const serviceDetails: Record<string, ServiceDetail> = Object.fromEntries(
+  [joint, accident, spine].map((d) => [d.slug, d]),
+);
 
-export function getServiceDetail(id: string): ServiceDetail | undefined {
-  return serviceDetails[id];
+export function getServiceDetailBySlug(slug: string): ServiceDetail | undefined {
+  return serviceDetails[slug];
+}
+
+export function getServiceDetailById(id: string): ServiceDetail | undefined {
+  return Object.values(serviceDetails).find((d) => d.id === id);
 }
