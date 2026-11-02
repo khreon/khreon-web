@@ -1,5 +1,8 @@
 import content from "../../../content.json";
 import Image from "next/image";
+import Link from "next/link";
+import { ChevronRight } from "lucide-react";
+import { getServiceDetail } from "@/lib/serviceDetails";
 import fs from "fs";
 import path from "path";
 
@@ -60,6 +63,15 @@ export default function Services() {
                         </li>
                      ))}
                    </ul>
+                   {getServiceDetail(service.id) && (
+                     <Link
+                       href={`/services/${service.id}`}
+                       className="mt-8 inline-flex items-center gap-1 rounded-full bg-primary px-6 py-3 font-semibold text-white transition-colors hover:bg-primary-dark"
+                     >
+                       자세히 보기
+                       <ChevronRight className="w-4 h-4" />
+                     </Link>
+                   )}
                  </div>
                </div>
              )
