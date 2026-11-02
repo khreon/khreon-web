@@ -9,7 +9,7 @@ type Props = {
 
 export default function BlogCTACard({ eyebrow = '이 글이 도움이 되셨다면', trackingCategory = 'BlogCTACard' }: Props) {
   return (
-    <div className="mt-12 rounded-3xl border border-gray-200 bg-gray-50 p-6 md:p-8 shadow-md">
+    <div className="mt-12 rounded-3xl border-2 border-primary bg-gray-50 p-6 md:p-8 shadow-md">
       <p className="text-sm font-medium text-gray-500 mb-1">{eyebrow}</p>
       <h2 className="text-xl md:text-2xl font-bold text-gray-900 mb-6 break-keep">
         {content.hospitalName}에 상담받아보세요
