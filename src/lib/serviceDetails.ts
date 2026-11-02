@@ -48,11 +48,9 @@ export type ServiceDetail = {
   relatedCategory?: CategorySlug;
 };
 
-// 아래 수치(가격, 횟수, 기간)와 문구는 시범용 임의 샘플입니다. 실제 값으로 교체하세요.
 const joint: ServiceDetail = {
   id: 'joint',
   slug: 'shoulder-joint-clinic',
-  isSample: true,
   hero: {
     headline: '어깨 통증, 원인을 눈으로 확인하고 치료합니다',
     sub: '오십견인지 회전근개 손상인지에 따라 치료 방향이 달라집니다. 원장이 초음파로 직접 확인한 뒤 꼭 필요한 부위에만 정밀하게 치료합니다.',
@@ -198,7 +196,6 @@ const joint: ServiceDetail = {
 const accident: ServiceDetail = {
   id: 'accident',
   slug: 'traffic-accident-clinic',
-  isSample: true,
   hero: {
     headline: '사고 후 통증, 눈에 보이지 않는 손상까지 살펴봅니다',
     sub: '사고 당시에는 괜찮다가 며칠 뒤 목과 허리가 아파지는 경우가 많습니다. 사고 경위와 현재 증상을 꼼꼼히 확인하고, 자동차보험 진료 절차도 함께 안내해 드립니다.',
@@ -398,7 +395,6 @@ const accident: ServiceDetail = {
 const spine: ServiceDetail = {
   id: 'spine',
   slug: 'spine-clinic',
-  isSample: true,
   hero: {
     headline: '목·허리 통증, 원인부터 정확히 확인합니다',
     sub: '같은 허리 통증이라도 디스크, 근육, 관절 중 어디에서 비롯됐는지에 따라 치료가 달라집니다. 체형과 생활 습관까지 살펴 맞춤 치료를 계획합니다.',
@@ -546,7 +542,6 @@ const spine: ServiceDetail = {
 const growth: ServiceDetail = {
   id: 'growth',
   slug: 'pediatric-growth-clinic',
-  isSample: true,
   hero: {
     headline: '아이의 성장, 숫자보다 아이에게 맞는 속도를 봅니다',
     sub: '유전적 체질과 현재 성장 상태를 확인하고, 과장 없이 현실적인 성장 계획을 세웁니다. 키뿐 아니라 식욕, 수면, 면역 같은 바탕 체력도 함께 살핍니다.',
@@ -742,7 +737,6 @@ const growth: ServiceDetail = {
 const diet: ServiceDetail = {
   id: 'diet',
   slug: 'diet-clinic',
-  isSample: true,
   hero: {
     headline: '무리한 감량 말고, 내 몸에 맞는 다이어트를 합니다',
     sub: '체중 숫자만 보지 않고 체성분과 대사 상태, 생활 습관을 함께 살핍니다. 1:1 맞춤 처방으로 감량하는 동안은 물론 이후 유지까지 계획합니다.',
@@ -936,7 +930,6 @@ const diet: ServiceDetail = {
 const women: ServiceDetail = {
   id: 'women',
   slug: 'women-clinic',
-  isSample: true,
   hero: {
     headline: '여성의 전 생애를 섬세하게 살핍니다',
     sub: '생리 주기, 호르몬, 자율신경계의 균형을 함께 살핍니다. 충분한 상담을 바탕으로 시기마다 달라지는 몸 상태에 맞춰 1:1로 진료합니다.',
