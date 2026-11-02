@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { getPost, getCategoryName, listPostsByCategory } from '@/lib/blog';
 import { renderMarkdown } from '@/lib/markdown';
 import BlogCTACard from '@/components/BlogCTACard';
+import BlogClinicLink from '@/components/BlogClinicLink';
 import BlogRelatedPosts from '@/components/BlogRelatedPosts';
 import content from '../../../../content.json';
 
@@ -97,6 +98,7 @@ export default async function BlogDetail({ params }: Props) {
         dangerouslySetInnerHTML={{ __html: html }}
       />
 
+      <BlogClinicLink category={post.category} />
       <BlogCTACard />
       <BlogRelatedPosts posts={relatedPosts} />
     </article>

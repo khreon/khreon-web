@@ -1177,3 +1177,8 @@ export function getServiceDetailBySlug(slug: string): ServiceDetail | undefined 
 export function getServiceDetailById(id: string): ServiceDetail | undefined {
   return Object.values(serviceDetails).find((d) => d.id === id);
 }
+
+// 칼럼 카테고리에 연결된 (공개된) 클리닉 상세 페이지 목록. 샘플 페이지는 noindex 이므로 제외한다.
+export function getServiceDetailsByCategory(category: CategorySlug): ServiceDetail[] {
+  return Object.values(serviceDetails).filter((d) => d.relatedCategory === category && !d.isSample);
+}
