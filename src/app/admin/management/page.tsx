@@ -30,6 +30,11 @@ const MANAGEMENT_SECTIONS: ManagementSection[] = [
         type: 'sheet',
         href: 'https://docs.google.com/spreadsheets/d/1v6EJn39guFPIBnTKxelnZfmyKs86Zpit-YXTh3ENTh0/edit?gid=1545811357#gid=1545811357',
       },
+      {
+        label: '약침 패키지 통계',
+        type: 'sheet',
+        href: 'https://docs.google.com/spreadsheets/d/1D7zM1bOQCSRWQ9AGKjcTxIvP202ydFp4i3JnXbppga0/edit?usp=sharing',
+      },
     ],
   },
   {
