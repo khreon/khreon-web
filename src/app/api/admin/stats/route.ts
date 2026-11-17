@@ -3,8 +3,8 @@ import { getDailyStats, getRangeStats, getWeekRange, getMonthRange, clampRangeTo
 
 function isAuthorized(request: NextRequest): boolean {
   const adminAuth = request.cookies.get('admin_auth')?.value;
-  const adminPassword = process.env.ADMIN_PASSWORD || 'admin123';
-  return adminAuth === adminPassword;
+  const adminPassword = process.env.ADMIN_PASSWORD;
+  return !!adminPassword && adminAuth === adminPassword;
 }
 
 export async function GET(request: NextRequest) {

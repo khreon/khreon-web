@@ -12,9 +12,9 @@ export async function POST(request: Request): Promise<NextResponse> {
       onBeforeGenerateToken: async () => {
         const cookieStore = await cookies();
         const adminAuth = cookieStore.get('admin_auth')?.value;
-        const adminPassword = process.env.ADMIN_PASSWORD || 'admin123';
+        const adminPassword = process.env.ADMIN_PASSWORD;
 
-        if (adminAuth !== adminPassword) {
+        if (!adminPassword || adminAuth !== adminPassword) {
           throw new Error('인증되지 않은 요청입니다.');
         }
 

@@ -5,9 +5,9 @@ import { redirect } from 'next/navigation';
 
 export async function loginAdmin(prevState: unknown, formData: FormData) {
   const password = formData.get('password') as string;
-  const adminPassword = process.env.ADMIN_PASSWORD || 'admin123';
+  const adminPassword = process.env.ADMIN_PASSWORD;
 
-  if (password === adminPassword) {
+  if (adminPassword && password === adminPassword) {
     const cookieStore = await cookies();
     cookieStore.set('admin_auth', password, {
       httpOnly: true,

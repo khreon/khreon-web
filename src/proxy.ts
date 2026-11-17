@@ -70,9 +70,10 @@ export default async function proxy(request: NextRequest) {
       return NextResponse.next();
     }
     const adminAuth = request.cookies.get('admin_auth')?.value;
-    const adminPassword = process.env.ADMIN_PASSWORD || 'admin123';
-    
-    if (adminAuth !== adminPassword) {
+    const adminPassword = process.env.ADMIN_PASSWORD;
+
+    // 환경변수가 없으면 모든 접근을 거부 (undefined === undefined 통과 방지)
+    if (!adminPassword || adminAuth !== adminPassword) {
       return NextResponse.redirect(new URL('/admin/login', request.url));
     }
   }
